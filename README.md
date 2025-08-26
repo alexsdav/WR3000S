@@ -1,0 +1,1 @@
+wget --no-check-certificate -O /tmp/universal_config_new_podkop.sh https://raw.githubusercontent.com/routerich/RouterichAX3000_configs/refs/heads/beta_alt_test/universal_config_new_podkop.sh && chmod +x /tmp/universal_config_new_podkop.sh && /tmp/universal_config_new_podkop.sh
