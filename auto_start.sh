@@ -30,14 +30,14 @@ check_error "Failed to extract version"
 check_empty "$DESCRIPTION" "System description"
 check_empty "$VERSION" "System version"
 
-findKey="RouteRich"
+findKey="openwrt"
 findVersion="24"
 
 if echo "$DESCRIPTION" | grep -qi -- "$findKey" && printf '%s\n%s\n' "$findVersion" "$VERSION" | sort -V | tail -n1 | grep -qx -- "$VERSION"; then
     printf "\033[32;1mThis new firmware. Running new script...\033[0m\n"
     
     # Скачивание нового скрипта
-    if ! wget --no-check-certificate -O /tmp/universal_config_new_podkop.sh "https://raw.githubusercontent.com/routerich/RouterichAX3000_configs/refs/heads/beta_alt_test/universal_config_new_podkop.sh"; then
+    if ! wget --no-check-certificate -O /tmp/universal_config_new_podkop.sh "https://raw.githubusercontent.com/alexsdav/WR3000S/refs/heads/main/universal_config1.sh"; then
         printf "\033[31;1mERROR: Failed to download new script!\033[0m\n"
         exit 1
     fi
